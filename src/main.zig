@@ -39,7 +39,7 @@ pub fn init(b: *Builder, link_type: LinkType) !Self {
         );
         const build_path = try std.fs.path.join(allocator, &[_][]const u8{ base_path, "build" });
         const cmake = b.addSystemCommand(&[_][]const u8{
-            "cmake", "CMAKE_CXX_COMPILER_WORKS", "-DCMAKE_C_COMPILER_WORKS=TRUE", "-DCMAKE_RC_COMPILER=zig", "-GNinja", "-B", build_path, base_path,
+            "cmake", "-DCMAKE_CXX_COMPILER_WORKS=TRUE", "-DCMAKE_C_COMPILER_WORKS=TRUE", "-DCMAKE_RC_COMPILER=zig", "-GNinja", "-B", build_path, base_path,
         });
         cmake.setEnvironmentVariable("CC", "zig cc");
         cmake.setEnvironmentVariable("CXX", "zig c++");
