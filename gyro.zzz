@@ -1,0 +1,6 @@
+pkgs:
+  sdl-builder:
+    version: 2.0.14
+
+deps:
+  build-tools/download: ^1.0.0
