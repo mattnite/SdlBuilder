@@ -39,13 +39,13 @@ pub fn init(b: *Builder, link_type: LinkType) !Self {
         );
         const build_path = try std.fs.path.join(allocator, &[_][]const u8{ base_path, "build" });
         const cmake = b.addSystemCommand(&[_][]const u8{
-            "cmake", "-B", build_path, base_path,
+            "cmake", "-GNinja", "-B", build_path, base_path,
         });
         cmake.setEnvironmentVariable("CC", "zig cc");
         cmake.setEnvironmentVariable("CXX", "zig c++");
 
         const make = b.addSystemCommand(&[_][]const u8{
-            "make", "-C", build_path, try std.fmt.allocPrint(allocator, "-j{}", .{try std.Thread.cpuCount()}),
+            "ninja", "-C", build_path,
         });
         make.setEnvironmentVariable("CC", "zig cc");
         make.setEnvironmentVariable("CXX", "zig c++");
